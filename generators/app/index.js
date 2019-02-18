@@ -23,10 +23,11 @@ module.exports = class extends Generator {
         default: 'Cool new web component',
       },
       {
-        type: 'confirm',
-        name: 'postcss',
-        message: 'Use postcss as your CSS preprocessor?',
-        default: false,
+        type: 'list',
+        choices: ['none', 'postcss', 'scss', 'sass'],
+        name: 'preprocessor',
+        message: 'CSS preprocessor to use, if any',
+        default: 'none',
       }
     ])
     .then(answers => {
@@ -34,9 +35,27 @@ module.exports = class extends Generator {
     })
   }
 
+  _helloWorldStyles(preprocessor) {
+    if (preprocessor === 'sass') {
+      return `:host
+  background-color: purple
+  color: white
+  display: inline-block
+  padding: 0.5em`
+    }
+
+    return `:host {
+  background-color: purple;
+  color: white;
+  display: inline-block;
+  padding: 0.5em;
+}`
+  }
+
   writing() {
     let answers = Object.assign({
       className: require('camelcase')(this.answers.elementName, {pascalCase: true}),
+      helloWorldStyles: this._helloWorldStyles(this.answers.preprocessor)
     }, this.answers)
     let paths = [
       'bs-config.js',
@@ -63,7 +82,7 @@ module.exports = class extends Generator {
       answers
     )
 
-    if (answers.postcss) {
+    if (answers.preprocessor === 'postcss') {
       this.fs.copyTpl(
         this.templatePath('postcss.config.js'),
         this.destinationPath('postcss.config.js'),

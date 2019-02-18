@@ -4,20 +4,21 @@
   "description": "<%= description %>",
   "main": "dist/<%= elementName %>.class.js",
   "scripts": {
-    "build": "easy-element build src<%= postcss ? ' -p postcss' : '' %>",
-    "build/watch": "easy-element watch src<%= postcss ? ' -p postcss' : '' %>",
+    "build": "easy-element build src<%= preprocessor !== 'none' ? ` -p ${preprocessor}` : '' %>",
+    "build/watch": "easy-element watch src<%= preprocessor !== 'none' ? ` -p ${preprocessor}` : '' %>",
     "dev": "nf --procfile commands/dev.Procfile start",
     "start": "browser-sync start -c bs-config.js"
   },
   "devDependencies": {
     "@webcomponents/webcomponentsjs": "^2.2.4",
     "browser-sync": "^2.24.7",
-    "easy-element": "^1.1.4",
+    "easy-element": "^1.2.0",
     "foreman": "^3.0.1"
   },
   "keywords": [
     "<%= elementName %>",
     "web component",
     "custom element"
-  ]
+  ],
+  "license": "GPL-3.0-or-later"
 }

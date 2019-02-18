@@ -3,13 +3,8 @@
   Structure the inside of your element
 </template>
 -->
-<style<%- postcss ? ` preprocessor="postcss"` : '' %>>
-  :host {
-    background-color: purple;
-    color: white;
-    display: inline-block;
-    padding: 0.5em;
-  }
+<style<%- preprocessor !== 'none' ? ` preprocessor="${preprocessor}"` : '' %>>
+<%- helloWorldStyles %>
 </style>
 <!--
 <script>
