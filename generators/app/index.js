@@ -38,14 +38,7 @@ module.exports = class extends Generator {
     let answers = Object.assign({
       className: require('camelcase')(this.answers.elementName, {pascalCase: true}),
     }, this.answers)
-    // let answers = {
-    //   className: require('camelcase')(this.answers.elementName, {pascalCase: true}),
-    //   description: this.answers.description,
-    //   elementName: this.answers.elementName,
-    //   postcss: this.answers.postcss,
-    // }
     let paths = [
-      '.gitignore',
       'bs-config.js',
       'package.json',
       'README.md',
@@ -60,6 +53,9 @@ module.exports = class extends Generator {
         answers
       )
     })
+
+    // Stupid NPM
+    this.fs.copyTpl(this.templatePath('_dot_gitignore'), this.destinationPath('.gitignore'))
 
     this.fs.copyTpl(
       this.templatePath('src/my-element.html'),
