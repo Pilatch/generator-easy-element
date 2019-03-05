@@ -64,28 +64,30 @@ module.exports = class extends Generator {
       'demo/index.html',
       'commands/dev.Procfile',
     ]
+    let projectDir = answers.elementName
+    let projectPath = path => this.destinationPath(`${projectDir}/${path}`)
 
     paths.forEach(path => {
       this.fs.copyTpl(
         this.templatePath(path),
-        this.destinationPath(path),
+        projectPath(path),
         answers
       )
     })
 
     // Stupid NPM
-    this.fs.copyTpl(this.templatePath('_dot_gitignore'), this.destinationPath('.gitignore'))
+    this.fs.copyTpl(this.templatePath('_dot_gitignore'), projectPath('.gitignore'))
 
     this.fs.copyTpl(
       this.templatePath('src/my-element.html'),
-      this.destinationPath(`src/${answers.elementName}.html`),
+      projectPath(`src/${answers.elementName}.html`),
       answers
     )
 
     if (answers.preprocessor === 'postcss') {
       this.fs.copyTpl(
         this.templatePath('postcss.config.js'),
-        this.destinationPath('postcss.config.js'),
+        projectPath('postcss.config.js'),
         answers
       )
 
@@ -95,11 +97,12 @@ module.exports = class extends Generator {
         }
       }
 
-      this.fs.extendJSON(this.destinationPath('package.json'), morePackageJson)
+      this.fs.extendJSON(projectPath('package.json'), morePackageJson)
     }
   }
 
   install() {
+    process.chdir(this.answers.elementName) // Gotta do an install from the project directory.
     this.npmInstall()
   }
 
