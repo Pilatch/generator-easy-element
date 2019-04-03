@@ -1,9 +1,10 @@
 module.exports = {
   server: {
     baseDir: './',
-    index: 'dist/index.class.html',
+    directory: true,
   },
   files: ['dist'],
   open: true,
-  notify: false
+  notify: false,
+  startPath: 'dist/index.class.html',
 }

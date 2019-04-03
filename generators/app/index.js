@@ -91,9 +91,9 @@ module.exports = class extends Generator {
 -->`
   }
 
-  _helloWorldHtmlTemplate(elementName) {
+  _helloWorldHtmlTemplate(editWhat) {
     return `<template>
-  Edit src/${elementName}.html to make changes.
+  Edit ${editWhat} to make changes.
 </template>`
   }
 
@@ -144,7 +144,7 @@ module.exports = class extends Generator {
 
     return `:host${lb}
   background-color: ${color}${sc}
-  opacity: .4${sc}
+  opacity: .5${sc}
   display: inline-block${sc}
   width: 60px${sc}
   height: 60px${sc}${rb}`
@@ -187,7 +187,7 @@ module.exports = class extends Generator {
         this.templatePath('src/custom-element.html'),
         projectPath(`src/${this.answers.elementName}.html`),
         {
-          htmlTemplate: this._helloWorldHtmlTemplate(this.answers.elementName),
+          htmlTemplate: this._helloWorldHtmlTemplate(`<strong>src/${this.answers.elementName}.html</strong>`),
           preprocessor: this.answers.preprocessor,
           className: this.answers.className,
           styles: this._helloWorldStyles(this.answers.preprocessor),
@@ -203,6 +203,16 @@ module.exports = class extends Generator {
         this.templatePath('_multiComponent_package.json'),
         projectPath(`package.json`),
         this.answers
+      )
+      this.fs.copyTpl(
+        this.templatePath('src/custom-element.html'),
+        projectPath(`src/a-message.html`),
+        {
+          htmlTemplate: this._helloWorldHtmlTemplate('stuff in the <strong>src</strong> folder'),
+          preprocessor: this.answers.preprocessor,
+          className: 'AMessage',
+          styles: this._helloWorldStyles(this.answers.preprocessor),
+        }
       )
       this.fs.copyTpl(
         this.templatePath('src/custom-element.html'),
