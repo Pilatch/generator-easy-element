@@ -91,10 +91,10 @@ module.exports = class extends Generator {
 -->`
   }
 
-  _helloWorldHtmlTemplate() {
+  _helloWorldHtmlTemplate(elementName) {
     return `<template>
-  Hello World!
-</templat`
+  Edit src/${elementName}.html to make changes.
+</template>`
   }
 
   _multiSquareHtmlTemplate() {
@@ -109,6 +109,7 @@ module.exports = class extends Generator {
       return `:host
   background-color: purple
   color: white
+  font-family: sans-serif
   display: inline-block
   padding: 0.5em`
     }
@@ -116,6 +117,7 @@ module.exports = class extends Generator {
     return `:host {
   background-color: purple;
   color: white;
+  font-family: sans-serif;
   display: inline-block;
   padding: 0.5em;
 }`
@@ -185,7 +187,7 @@ module.exports = class extends Generator {
         this.templatePath('src/custom-element.html'),
         projectPath(`src/${this.answers.elementName}.html`),
         {
-          htmlTemplate: this._helloWorldHtmlTemplate(),
+          htmlTemplate: this._helloWorldHtmlTemplate(this.answers.elementName),
           preprocessor: this.answers.preprocessor,
           className: this.answers.className,
           styles: this._helloWorldStyles(this.answers.preprocessor),
