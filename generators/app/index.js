@@ -274,6 +274,9 @@ module.exports = class extends Generator {
       : '--bundle'
 
     this.spawnCommand('npx', ['easy-element', 'demo', 'src', maybeBundleFlag].filter(Boolean))
+    // Build before running dev so there isn't a race condition with the browser
+    // possibly loading the demo page before the compiled JS has been written.
+    this.spawnCommand('npx', ['easy-element', 'build', 'src', maybeBundleFlag].filter(Boolean))
     this.spawnCommand('npm', ['run', 'dev'])
   }
 }
