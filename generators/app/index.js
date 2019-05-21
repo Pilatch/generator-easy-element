@@ -1,4 +1,4 @@
-let easyElementVersion = '1.6.1'
+let easyElementVersion = '1.6.2'
 let Generator = require('yeoman-generator')
 let projectTypes = {
   SINGLE_ELEMENT: 'single element',
