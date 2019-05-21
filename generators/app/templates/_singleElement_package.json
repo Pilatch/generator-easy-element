@@ -4,7 +4,7 @@
   "description": "<%= description %>",
   "main": "dist/<%= elementName %>.class.js",
   "scripts": {
-    "build": "easy-element build src<%= preprocessor !== 'none' ? ` -p ${preprocessor}` : '' %>",
+    "build": "easy-element build src<%= preprocessor !== 'none' ? ` -p ${preprocessor}` : '' %> --minify",
     "build/watch": "easy-element watch src<%= preprocessor !== 'none' ? ` -p ${preprocessor}` : '' %>",
     "dev": "nf --procfile commands/dev.Procfile start",
     "start": "browser-sync start -c bs-config.js"

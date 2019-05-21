@@ -4,7 +4,7 @@
   "description": "<%= description %>",
   "main": "dist/bundle.class.js",
   "scripts": {
-    "build": "easy-element build src<%= preprocessor !== 'none' ? ` -p ${preprocessor}` : '' %> --bundle",
+    "build": "easy-element build src<%= preprocessor !== 'none' ? ` -p ${preprocessor}` : '' %> --bundle --minify",
     "build/watch": "easy-element watch src<%= preprocessor !== 'none' ? ` -p ${preprocessor}` : '' %> --bundle",
     "dev": "nf --procfile commands/dev.Procfile start",
     "start": "browser-sync start -c bs-config.js"
