@@ -1,7 +1,7 @@
 {
   "name": "generator-easy-element",
   "repository": "git@github.com:Pilatch/generator-easy-element.git",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "Easily create cross-browser web components using easy-element",
   "files": [
     "generators"
@@ -21,6 +21,10 @@
   "dependencies": {
     "camelcase": "^5.0.0",
     "yeoman-generator": "^1.0.0"
+  },
+  "resolutions": {
+    "deep-extend": "^0.5.1",
+    "diff": "^3.5.0"
   },
   "license": "GPL-3.0-or-later"
 }
