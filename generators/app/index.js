@@ -1,4 +1,4 @@
-let easyElementVersion = '1.8.0'
+let easyElementVersion = '1.8.6'
 let Generator = require('yeoman-generator')
 let projectTypes = {
   SINGLE_ELEMENT: 'single element',
@@ -157,7 +157,6 @@ module.exports = class extends Generator {
     let simplePaths = [
       'bs-config.js',
       'README.md',
-      'commands/dev.Procfile',
     ]
 
     if (this.answers.isSingleElementProject) {
