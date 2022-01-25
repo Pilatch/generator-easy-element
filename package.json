@@ -25,7 +25,10 @@
   "resolutions": {
     "deep-extend": "^0.5.1",
     "diff": "^3.5.0",
-    "minimist": "^1.2.5"
+    "hosted-git-info": "^2.8.9",
+    "lodash": "^4.17.21",
+    "minimist": "^1.2.5",
+    "path-parse": "^1.0.7"
   },
   "license": "GPL-3.0-or-later"
 }
